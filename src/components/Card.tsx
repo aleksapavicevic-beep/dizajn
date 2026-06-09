@@ -1,0 +1,105 @@
+// src/components/Card.tsx
+// Reusable card komponenta sa soft gradientima
+
+import React from 'react';
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ViewStyle,
+  GradientBackground,
+  LinearGradient as RNLinearGradient,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Colors, Spacing, BorderRadius, Shadows } from '@constants/colors';
+
+interface CardProps {
+  children: React.ReactNode;
+  onPress?: () => void;
+  variant?: 'default' | 'primary' | 'emergency';
+  style?: ViewStyle;
+  gradient?: boolean;
+  disabled?: boolean;
+}
+
+/**
+ * Dementia-friendly card komponenta
+ * - Soft gradients
+ * - Subtle shadows
+ * - Touch feedback
+ * - Clean design
+ */
+export function Card({
+  children,
+  onPress,
+  variant = 'default',
+  style,
+  gradient = true,
+  disabled = false,
+}: CardProps) {
+  const getGradientColors = (): [string, string] => {
+    switch (variant) {
+      case 'primary':
+        return [Colors.primaryLight, Colors.primary];
+      case 'emergency':
+        return [Colors.emergencyLight, Colors.emergency];
+      default:
+        return [Colors.white, Colors.gray50];
+    }
+  };
+
+  const containerStyle: ViewStyle = {
+    borderRadius: BorderRadius.xl,
+    overflow: 'hidden',
+    marginBottom: Spacing.lg,
+    opacity: disabled ? 0.6 : 1,
+  };
+
+  const innerStyle: ViewStyle = {
+    padding: Spacing.xl,
+    borderRadius: BorderRadius.xl,
+  };
+
+  const shadowStyle = StyleSheet.create({
+    shadow: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 3,
+    },
+  }).shadow;
+
+  if (onPress) {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        disabled={disabled}
+        activeOpacity={0.8}
+        style={[containerStyle, shadowStyle, style]}
+        accessible
+        accessibilityRole="button"
+      >
+        {gradient ? (
+          <LinearGradient colors={getGradientColors()} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+            <View style={innerStyle}>{children}</View>
+          </LinearGradient>
+        ) : (
+          <View style={[innerStyle, { backgroundColor: Colors.white }]}>{children}</View>
+        )}
+      </TouchableOpacity>
+    );
+  }
+
+  return (
+    <View style={[containerStyle, shadowStyle, style]}>
+      {gradient ? (
+        <LinearGradient colors={getGradientColors()} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+          <View style={innerStyle}>{children}</View>
+        </LinearGradient>
+      ) : (
+        <View style={[innerStyle, { backgroundColor: Colors.white }]}>{children}</View>
+      )}
+    </View>
+  );
+}

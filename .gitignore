@@ -1,0 +1,17 @@
+.env.local
+node_modules/
+.expo/
+dist/
+.DS_Store
+*.jks
+*.pem
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+.vscode/
+.idea/
+*.swp
+*.swo

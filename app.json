@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Dementia Companion",
+    "slug": "dementia-companion",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#FFFFFF",
+    "scheme": "dementia-companion",
+    "plugins": [],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTabletMode": true,
+      "usesCloudBackup": false
+    },
+    "android": {
+      "softwareKeyboardLayoutMode": "pan",
+      "usesCleartextTraffic": true,
+      "permissions": [
+        "INTERNET",
+        "READ_CONTACTS",
+        "CALL_PHONE",
+        "SEND_SMS",
+        "POST_NOTIFICATIONS",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {},
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}
