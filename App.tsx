@@ -620,7 +620,7 @@ function RoutineScreen({ onBack, items, onChange, adminMode, onAdminPress }: {
         <View>
           <Text style={rt.cardTime}>{fmtTime(now)}</Text>
         </View>
-      </View>-
+      </View>
       <ScrollView contentContainerStyle={rt.list}>
         {items.map((item, idx) => (
           <View key={item.id} style={rt.row}>
